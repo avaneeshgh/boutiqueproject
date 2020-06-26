@@ -1,0 +1,12 @@
+<div class="card">
+  <a [routerLink]="['/collections', collection?.dbname]">
+    <div class="collectionimage">
+      <img class="imgcontain" [src]="collection?.image" alt="" />
+    </div>
+
+    <div class="collectioninfo">
+      <h3 style="font-size: 16px;">{{ collection?.name }}</h3>
+      <p>{{ collection?.count }} Items</p>
+    </div>
+  </a>
+</div>

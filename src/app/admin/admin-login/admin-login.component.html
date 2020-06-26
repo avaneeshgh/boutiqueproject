@@ -1,0 +1,110 @@
+<div class="container" style="height: 600px;" *ngIf="isLoading">
+  <div style="position: relative; top: 40%; left: 40%;">
+    <mat-spinner></mat-spinner>
+    <br />
+    <h2 class="loading" style="font-weight: bold; color: blue;">
+      Loading.....
+    </h2>
+  </div>
+</div>
+
+<body class="bg-img" *ngIf="!isLoading">
+  <div class="container fix">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <form ngForm #logInForm="ngForm" (submit)="onSubmit(logInForm)">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>
+                <span class="loginstyle">
+                  ADMIN - LOG IN
+                </span>
+              </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  ngModel
+                  name="username"
+                  #username="ngModel"
+                  required
+                  email
+                />
+
+                <!-- materror -->
+                <mat-error *ngIf="username.touched && username.invalid">
+                  <p class="mat-body-1">Invalid Username</p>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  ngModel
+                  type="password"
+                  name="password"
+                  #password="ngModel"
+                  required
+                  [type]="hide ? 'password' : 'text'"
+                />
+                <!-- matsuffixbutton -->
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+
+                <!-- materror -->
+                <mat-error *ngIf="username.touched && username.invalid">
+                  <p class="mat-body-1">Please Enter Password!</p>
+                </mat-error>
+              </mat-form-field>
+            </mat-card-content>
+
+            <mat-card-actions>
+              <button
+                mat-raised-button
+                [disabled]="logInForm.invalid"
+                type="submit"
+                color="primary"
+                type="submit"
+              >
+                Sign In
+              </button>
+            </mat-card-actions>
+
+            <!-- <mat-card-footer *ngIf="isProgressLoading">
+            <mat-progress-bar
+              *ngIf="isProgressLoading"
+              mode="indeterminate"
+            ></mat-progress-bar>
+            <p
+              *ngIf="isProgressLoading"
+              style="
+                font-size: 1.3em;
+                font-weight: bold;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              "
+            >
+              Loading
+            </p>
+          </mat-card-footer> -->
+          </mat-card>
+        </form>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
+</body>

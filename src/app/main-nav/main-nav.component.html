@@ -1,0 +1,234 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    [ngClass]="{ hidden: (isHandset$ | async) === false }"
+    fixedInViewport="false"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-nav-list>
+      <a mat-list-item routerLink="/"><mat-icon>home</mat-icon>Home</a>
+      <a mat-list-item [matMenuTriggerFor]="services">
+        <mat-icon>apps</mat-icon>Collections<span class="spacer"></span
+        ><mat-icon>chevron_right</mat-icon>
+      </a>
+      <a *ngIf="!isOwnerAuthenticated" mat-list-item routerLink="/admin/login"
+        ><mat-icon>login</mat-icon>Admin</a
+      >
+      <button
+        (click)="onLogOut()"
+        *ngIf="isOwnerAuthenticated"
+        mat-list-item
+        routerLink=""
+      >
+        <mat-icon>logout</mat-icon>
+      </button>
+      <a *ngIf="isOwnerAuthenticated" mat-list-item routerLink="/admin/update"
+        ><mat-icon>add_circle</mat-icon></a
+      >
+      <a mat-list-item routerLink="/contactus"
+        ><mat-icon>contacts</mat-icon>Contact</a
+      >
+
+      <a mat-list-item routerLink="/aboutus"
+        ><mat-icon>people</mat-icon>About</a
+      >
+    </mat-nav-list>
+
+    <mat-menu #services="matMenu">
+      <mat-nav-list>
+        <a mat-menu-item routerLink="/collections/Anarkali+Suit"
+          >Anarkali Suits</a
+        >
+        <a mat-menu-item routerLink="/collections/Long+Frock">Long Frocks</a>
+        <a mat-menu-item routerLink="/collections/Lehanga">Lehangas</a>
+
+        <a
+          mat-menu-item
+          [matMenuTriggerFor]="salwar"
+          style="font-weight: bold;"
+        >
+          Salwar Kameez<span class="spacer"></span
+          ><mat-icon>chevron_right</mat-icon>
+        </a>
+        <a mat-menu-item routerLink="/collections/Crop+Top">Crop Tops</a>
+        <a mat-menu-item routerLink="/collections/Bridal+Blouse"
+          >Bridal Blouses</a
+        >
+        <a mat-menu-item routerLink="/collections/Pattern+Blouse"
+          >Pattern Blouses</a
+        >
+
+        <a
+          mat-menu-item
+          [matMenuTriggerFor]="designer"
+          style="font-weight: bold;"
+        >
+          Designer Blouses<span class="spacer"></span
+          ><mat-icon>chevron_right</mat-icon>
+        </a>
+        <a mat-menu-item routerLink="/collections/Kids+Wear">Kids Wear</a>
+        <a mat-menu-item [matMenuTriggerFor]="inner" style="font-weight: bold;">
+          Inner Wear<span class="spacer"></span
+          ><mat-icon>chevron_right</mat-icon>
+        </a>
+      </mat-nav-list>
+    </mat-menu>
+
+    <mat-menu #salwar="matMenu">
+      <mat-nav-list>
+        <a mat-menu-item routerLink="/collections/Salwar+Kameez-Churidar+Suit"
+          >Churidar Suits</a
+        >
+        <a mat-menu-item routerLink="/collections/Salwar+Kameez-Pant+Suit"
+          >Pant Suits</a
+        >
+        <a mat-menu-item routerLink="/collections/Salwar+Kameez-Patiyala+Suit"
+          >Patiyala Suits</a
+        >
+        <a mat-menu-item routerLink="/collections/Salwar+Kameez-Straight+Suit"
+          >Straight Suits</a
+        >
+        <a mat-menu-item routerLink="/collections/Salwar+Kameez-Palazzo+Suit"
+          >Palazzo Suits</a
+        >
+        <a mat-menu-item routerLink="/collections/Salwar+Kameez-Sharara+Suit"
+          >Sharara Suits</a
+        >
+      </mat-nav-list>
+    </mat-menu>
+
+    <mat-menu #designer="matMenu">
+      <mat-nav-list>
+        <a mat-menu-item routerLink="/collections/Designer-Blouse-Boat+Neck"
+          >Boat neck</a
+        >
+        <a mat-menu-item routerLink="/collections/Designer-Blouse-Halter+Neck"
+          >Halter neck</a
+        >
+        <a mat-menu-item routerLink="/collections/Designer-Blouse-High+Neck"
+          >High neck</a
+        >
+        <a mat-menu-item routerLink="/collections/Designer-Blouse-Stand+Collar"
+          >Stand Collar</a
+        >
+        <a mat-menu-item routerLink="/collections/Designer-Blouse-Double+Collar"
+          >Double Collar</a
+        >
+      </mat-nav-list>
+    </mat-menu>
+
+    <mat-menu #inner="matMenu">
+      <mat-nav-list>
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Padded+Bra"
+          >Padded Bras</a
+        >
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Sport+Bra"
+          >Sport Bras</a
+        >
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Plane+Pantie"
+          >Plane Panties</a
+        >
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Printed+Pantie"
+          >Printed Panties</a
+        >
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Slip">Slips</a>
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Full+Slip"
+          >Full Slips</a
+        >
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Bloomer+Pantie"
+          >Bloomer Panties</a
+        >
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Cycling+Short"
+          >Cycling Shorts</a
+        >
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Nighty+Slip"
+          >Nighty Slips</a
+        >
+        <a mat-menu-item routerLink="/collections/Inner+Wear-Mother+Nightie"
+          >Mother Nighties</a
+        >
+      </mat-nav-list>
+    </mat-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="white">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a routerLink="/">
+        <img
+          [ngClass]="{ hidden1: (isHandset$ | async) === true }"
+          class="logoimg"
+          src="https://lh3.googleusercontent.com/jk-WZDL-y2FA6fcGwNFHiN2oMhqh4AryPTOrC4RyC1eFZNQ2qwMqTqUSyeuj_Wwp-KfHbRcisA8MXsctPuTjDEYUV3hcDCgDWjG0nO55OeowaJ2N-cuChgRiEWQDJoxRGEkI63YrkWyoPSURGWUbQ_X9svPd0x8vTnATtuNoY6wXLX74dsWRnVxivcaGxi1gOf3kcaMQw85wX1lrvSheWIzNT9yQ5qNXcO46yNYoR0w-QQhKw8fhBH89szxj7YidOX0R29LhB_rOs3EFkToFjYB_N_5kxSaDK2Z3egXm9PFsgLi9WgThEFWdeQW484B-0rucubuZeK8CU_iucg1b0nSjDZ-rPxEUpbtPU33DL4bKLzne2VuYC_L4S3dDSkGG1bWMG8uV8BSz5TuOZwH5eti0Qo1YwqYyG-cKdRrBThKoYR4SMcMkZkfZv_MUoOTRdNuAXRahckjIzU6QWR5-Mfiz67cNZfctGK4MYkZx5Ij-jopxxjnLgZCCI8e1itarUi63ahDh6sO1YvL2-pdgMw2qvfVdoPtnDfxZN1iih8QQ3G9C045fNM15j2bh8wFxXr4SodtVaJNg-ec8IIpJe-HKDKs1bIvOgWR94BkCSWCEa509XTQOl6RVlxQVeT4Pg0zOkO-0C3taseBboB6yVefeAA-08dKS30y7lEoAMh6JgCt0OHujWsUutM-_Iw=w463-h348-no?authuser=0"
+          alt="logo"
+        />
+        <span class="logotext">SAI ESHWARA BOUTIQUE</span>
+      </a>
+
+      <span class="spacer"></span>
+
+      <ul [ngClass]="{ hidden: (isHandset$ | async) === true }">
+        <li>
+          <a mat-button routerLink="/" routerLinkActive="mat-accent"
+            ><mat-icon>home</mat-icon>Home</a
+          >
+        </li>
+        <li>
+          <a mat-button routerLink="/collections" routerLinkActive="mat-accent"
+            ><mat-icon>apps</mat-icon>Collections</a
+          >
+        </li>
+
+        <li *ngIf="!isOwnerAuthenticated">
+          <a mat-button routerLink="/admin/login" routerLinkActive="mat-accent"
+            ><mat-icon>login</mat-icon></a
+          >
+        </li>
+        <li *ngIf="isOwnerAuthenticated">
+          <button
+            mat-button
+            (click)="onLogOut()"
+            routerLink="dfv"
+            routerLinkActive="mat-accent"
+          >
+            <mat-icon>logout</mat-icon>
+          </button>
+        </li>
+        <li *ngIf="isOwnerAuthenticated">
+          <a mat-button routerLink="/admin/update" routerLinkActive="mat-accent"
+            ><mat-icon>add_circle</mat-icon></a
+          >
+        </li>
+        <li>
+          <a mat-button routerLink="/contactus" routerLinkActive="mat-accent"
+            ><mat-icon>contacts</mat-icon>Contact</a
+          >
+        </li>
+        <li>
+          <a mat-button routerLink="/aboutus" routerLinkActive="mat-accent"
+            ><mat-icon>people</mat-icon>About</a
+          >
+        </li>
+
+        <li>
+          <a
+            mat-button
+            href="https://www.facebook.com/pages/category/Design---Fashion/Saieshwara-boutique-bodhan-482535138867816/"
+            ><i class="fa fa-facebook"></i
+          ></a>
+        </li>
+      </ul>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

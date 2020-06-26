@@ -1,0 +1,55 @@
+<div class="container" style="height: 600px;" *ngIf="isLoading">
+  <div class="complete" style="position: relative; top: 40%; left: 40%;">
+    <mat-spinner></mat-spinner>
+    <br />
+    <h2 class="loading" style="font-weight: bold; color: blue;">
+      Loading.....
+    </h2>
+  </div>
+</div>
+
+<div class="card" *ngIf="!isLoading">
+  <img class="imgcontain" [src]="p.imgurl" alt="" />
+
+  <div class="dress-card-body">
+    <!-- name and type -->
+    <h4 class="dress-card-title">{{ p.productname }}</h4>
+    <p class="dress-card-para">
+      {{ p.producttype.replace("+", " ") }}&nbsp;&nbsp;&nbsp;&nbsp;
+      <a
+        *ngIf="isAuthenticated"
+        [routerLink]="['/admin/admin-edit-product/', p.id]"
+      >
+        Edit
+      </a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span
+        ><button *ngIf="isAuthenticated" (click)="onDelete(p.id)">
+          Delete
+        </button></span
+      >
+    </p>
+
+    <p class="dress-card-para">
+      <span class="dress-card-price">Rs. {{ p.price }}&ensp;</span
+      ><span class="dress-card-crossed">Rs. {{ p.price }}</span
+      ><span class="dress-card-off">&ensp;(20% OFF)</span>
+    </p>
+  </div>
+
+  <div class="container-fluid btnrow">
+    <div class="row">
+      <div class="col text-center fav">
+        <a (click)="onLiked()"
+          ><i class="fa fa-heart" style="font-size: 25px; color: red;"></i
+        ></a>
+      </div>
+      <div class="col text-center sh"><mat-icon>share</mat-icon></div>
+      <div class="col" style="justify-content: start;">
+        <button mat-raised-button color="primary" (click)="viewParticular()">
+          View
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

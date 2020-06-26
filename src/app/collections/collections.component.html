@@ -1,0 +1,28 @@
+<div class="container" style="height: 600px;" *ngIf="isLoading">
+  <div style="position: relative; top: 40%; left: 40%;">
+    <mat-spinner></mat-spinner>
+    <br />
+    <h2 class="loading" style="font-weight: bold; color: blue;">
+      Loading.....
+    </h2>
+  </div>
+</div>
+
+<div class="container" *ngIf="!isLoading">
+  <div class="row">
+    <div
+      class="col text-center"
+      style="margin-top: 15px; margin-bottom: 15px; color: darkgreen;"
+    >
+      <p class="display-1">Our Collections</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <ng-container *ngFor="let p of allCollections">
+      <div class="col-md-3 col-xs-6">
+        <app-category-card [collection]="p"></app-category-card>
+      </div>
+    </ng-container>
+  </div>
+</div>

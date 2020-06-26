@@ -1,0 +1,116 @@
+<div class="content-container">
+  <mat-toolbar color="accent">Please Enter Details</mat-toolbar>
+  <mat-icon id="close-icon" (click)="onCloseDialog()">close</mat-icon>
+</div>
+
+<div class="container-fluid">
+  <form ngForm #userForm="ngForm">
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>
+            Full Name
+          </mat-label>
+          <input
+            ngModel
+            #productname="ngModel"
+            matInput
+            type="text"
+            name="userName"
+            required
+          />
+
+          <!-- materror -->
+          <mat-error *ngIf="productname.touched && productname.invalid">
+            <p class="mat-body-1">Enter your name!</p>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>
+            Email
+          </mat-label>
+          <input
+            ngModel
+            #useremail="ngModel"
+            matInput
+            type="email"
+            name="userEmail"
+            email
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>
+            Mobile
+          </mat-label>
+          <input
+            ngModel
+            #userPhone="ngModel"
+            matInput
+            type="text"
+            name="userPhone"
+            required
+            minlength="10"
+            pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$"
+          />
+          <span matPrefix>+91&nbsp;</span>
+          <!-- materror -->
+
+          <mat-error
+            *ngIf="
+              userPhone.touched ||
+              userPhone.errors.minlength ||
+              userPhone.errors.pattern
+            "
+          >
+            <p class="mat-body-1">Enter valid Mobile Number!</p>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>
+            City
+          </mat-label>
+          <input ngModel #city="ngModel" matInput type="text" name="userCity" />
+        </mat-form-field>
+
+        <mat-label>Gender :</mat-label>
+        <mat-radio-group ngModel name="userGender" #gender="ngModel" required>
+          <mat-radio-button value="M">Male</mat-radio-button>
+          <mat-radio-button value="F">Female</mat-radio-button>
+          <mat-radio-button value="O">Others</mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngIf="gender.touched && gender.invalid">
+          <p class="mat-body-1">Please Choose..</p>
+        </mat-error>
+
+        <mat-form-field>
+          <mat-label>Message</mat-label>
+          <textarea
+            matInput
+            ngModel
+            name="message"
+            #message="ngModel"
+            rows="6"
+          ></textarea>
+        </mat-form-field>
+
+        <div class="button-row">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="userForm.invalid"
+            [mat-dialog-close]="userForm"
+          >
+            Submit
+          </button>
+          <button mat-raised-button color="warn" [mat-dialog-close]="null">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

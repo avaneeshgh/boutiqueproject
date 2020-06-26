@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_ATLAS_PW": "b44nH9mHIAzwJK7d",
+    "JWT_KEY": "avaneesh-loves-soumya-forever"
+  }
+}

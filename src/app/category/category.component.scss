@@ -1,0 +1,45 @@
+.filter-box {
+  left: 20%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.minmax {
+  justify-content: center;
+}
+
+.sortby {
+  justify-content: right;
+}
+
+mat-form-field,
+mat-label {
+  font-size: 1.1em;
+}
+mat-option {
+  background-color: white;
+  color: black;
+}
+mat-form-field {
+  margin: 5px 5px 5px 5px;
+}
+
+.button-search {
+  border: none;
+  text-decoration: none;
+}
+
+.paginator-box {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+mat-toolbar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
