@@ -3,8 +3,7 @@ const router = express.Router();
 const Product = require("./../backendmodels/product");
 const jwt = require("jsonwebtoken");
 
-//login-function
-// _id = 5edf8e38dd04a37a13cddec6
+
 router.post("", (req, res, next) => {
   //get username and password
   const username = req.body.username;
@@ -12,10 +11,11 @@ router.post("", (req, res, next) => {
 
   //console.log(username, password);
 
+  //edit here only
   Product.findById("5edf8e38dd04a37a13cddec6")
     .then((doc) => {
       //doc found checking
-      if (username == "madhusudhan1974@gmail.com" && password == "ambika9703") {
+      if (username == "" && password == "") {
         return true;
       } else {
         return false;
@@ -30,12 +30,14 @@ router.post("", (req, res, next) => {
           .json({ message: "Invalid Authentication Credentials!" });
       }
       //result true
+    
+    //edit here only
       const token = jwt.sign(
         {
           email: "madhusudhan1974@gmail.com",
           ownerid: "5edf8e38dd04a37a13cddec6",
         },
-        "avaneesh-loves-soumya-forever",
+        "",
         { expiresIn: "1h" }
       );
 
