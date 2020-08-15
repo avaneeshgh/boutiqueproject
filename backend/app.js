@@ -21,7 +21,7 @@ app.use(cors());
 const mongoose = require("mongoose");
 mongoose
   .connect(
-    "mongodb+srv://soumya:b44nH9mHIAzwJK7d@avaneesh1-famc2.mongodb.net/Real",
+    "",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
